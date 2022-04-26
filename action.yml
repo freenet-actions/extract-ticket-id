@@ -1,0 +1,15 @@
+name: 'Ticket extractor'
+description: 'Extracts a ticket id from the last commit message'
+inputs:
+  github:
+    description: "the GitHub context as json"
+    required: true
+  regex:
+    description: "a regular expression to be used with sed"
+    required: true
+outputs:
+  ticket_id:
+    description: the ticket id extracted from the commit message
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
