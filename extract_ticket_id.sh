@@ -14,10 +14,13 @@ if [ -z "$TICKETID" ]
 then
   echo "No ticket id found in message"
 else  
-  # TICKETID may be a multiline string.
-  # For the output newline characters are not relevant and can be replaced
+  # TICKETID may be a multiline string. Convert to one line first
   message=$(echo $TICKETID | tr '\n' ' ')
-  echo "Extracted ticket ids: $message"
+  # Split the string by space
+  readarray -d " " -t items <<< "$message"
+  # only use the first item
+  message=${items[0]}
+  echo "Extracted ticket id: '$message'"
   echo "ticket_id=$message" >> $GITHUB_OUTPUT
 fi
 
