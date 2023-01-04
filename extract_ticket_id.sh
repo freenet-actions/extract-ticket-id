@@ -15,7 +15,6 @@ then
   echo "No ticket id found in message"
 else
   echo "Extracted ticket id: $TICKETID"
-  echo "::set-output name=ticket_id::$TICKETID"
+  echo "ticket_id=$TICKETID" >> $GITHUB_OUTPUT
 fi
-
 
